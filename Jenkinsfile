@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo "Package the code"
                 sh "mvn package"
-            }git 
+            }
         }
     }
 }

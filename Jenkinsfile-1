@@ -1,56 +1,62 @@
 pipeline {
-   agent none
-   tools{
-//     jdk "myjava"
+    agent none
+
+    tools {
         maven "mymaven"
-   }
-   parameters {
-        string(name: 'Env', defaultValue: 'Test', description: 'Environment to deploy the code  ')
+    }
 
+    parameters {
+        string(name: 'Env', defaultValue: 'Test', description: 'Environment to deploy the code')
         choice(name: 'APPVERSION', choices: ['1.1', '1.2', '1.3'], description: 'Pick something')
-
         booleanParam(name: 'excuteTests', defaultValue: true, description: 'decide to run')
-   }
+    }
+
     stages {
-        stage('Compile') { //prod
-        agent any
+
+        stage('Compile') {
+            agent any
             steps {
                 echo "Compile the code ${params.Env}"
                 sh "mvn compile"
             }
         }
-         stage('UnitTest') { //test
-         when {
-            expression{
-                  params.excuteTests == true
+
+        stage('UnitTest') {
+            when {
+                expression {
+                    params.excuteTests == true
+                }
             }
-         }
-         agent any
+
+            agent any
+
             steps {
                 echo "Test the code"
                 sh "mvn test"
             }
-            post{
-                always{
-                     junit 'target/surefire-reports/*.xml'
+
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
-	    
         }
-         stage('Package') {//dev
-        //agent {label 'linux_slave'}
-        agent any
-        input{
-            message "Select the version to deploy"
-            ok "version selected"
-            parameters{
-                choice(name: 'NEWAPP', choices: ['1.1', '1.2', '1.3'], description: 'Pick something')
+
+        stage('Package') {
+            agent any
+
+            input {
+                message "Select the version to deploy"
+                ok "version selected"
+                parameters {
+                    choice(name: 'NEWAPP', choices: ['1.1', '1.2', '1.3'], description: 'Pick something')
+                }
             }
+
             steps {
                 echo "Package the code ${params.APPVERSION}"
                 sh "mvn package"
             }
         }
     }
-}
 }

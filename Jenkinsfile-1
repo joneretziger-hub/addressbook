@@ -15,7 +15,7 @@ pipeline {
         stage('Compile') { //prod
         agent any
             steps {
-                echo "Compile the code"
+                echo "Compile the code ${params.Env}"
                 sh "mvn compile"
             }
         }
@@ -36,7 +36,7 @@ pipeline {
         //agent {label 'linux_slave'}
         agent any
             steps {
-                echo "Package the code"
+                echo "Package the code ${params.APPVERSION}"
                 sh "mvn package"
             }
         }

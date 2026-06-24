@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                 sshagent (['slave']) {
-                echo "Package the code ${params.APPVERSION}"
+                 echo "Package the code ${params.APPVERSION}"
                 sh "scp -o StrictHostKeyChecking=no server-script.sh  ${DEV_SERVER_IP}:/home/ec2-user"
                 sh "ssh -o StrictHostKeyChecking=no ${DEV_SERVER_IP} 'bash ~/script-server.sh"
                 }   

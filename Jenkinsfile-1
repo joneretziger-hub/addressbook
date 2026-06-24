@@ -5,7 +5,7 @@ pipeline {
         maven "mymaven"
     }
     environment {
-        DEV_SERVER_IP= 'ec2-user@13.222.186.146'
+        DEV_SERVER_IP= 'ec2-user@34.224.165.64'
     }
 
     parameters {

@@ -20,6 +20,9 @@ pipeline {
         // jdk "myjava"
         maven "mymaven"
     }
+
+
+    
     stages {
         stage('compile') {
             agent any

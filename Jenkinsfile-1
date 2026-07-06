@@ -1,6 +1,6 @@
 pipeline {
     agent none
-}
+
     tools {
         maven "mymaven"
     }
@@ -106,4 +106,5 @@ pipeline {
             }
         }
     }
+}
 }

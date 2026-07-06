@@ -14,7 +14,6 @@ then
   git fetch --all
   git checkout docker-1
   git reset --hard origin/docker-1
-  git pull origin docker-1
   git clean -fd
 else
   git clone https://github.com/joneretziger-hub/addressbook.git /home/ec2-user/addressbook

@@ -21,7 +21,7 @@ pipeline {
     stages {
 
         stage('Compile') {
-            //agent any
+            agent any
             steps {
                 echo "Compile the code ${params.Env}"
                 sh "mvn compile"

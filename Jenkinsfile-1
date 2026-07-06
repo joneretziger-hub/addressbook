@@ -98,7 +98,7 @@ pipeline {
                 sshagent (['slave']) {
                 withCredentials([usernamePassword(credentialsId: 'Docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
                  echo "Package the code ${params.APPVERSION}"
-                 sh "scp -o StrictHostKeyChecking=no  server-script.sh ${DEPLOY_SERVER_IP} :/home/ec2-user"
+                 //sh "scp -o StrictHostKeyChecking=no  server-script.sh ${DEPLOY_SERVER_IP} :/home/ec2-user"
                  sh "ssh ${DEPLOY_SERVER_IP} sudo yum install docker -y"
                  sh "ssh ${DEPLOY_SERVER_IP} sudo systemctl start docker"
                  sh "ssh ${DEPLOY_SERVER_IP} sudo docker login -u ${USERNAME} -p ${PASSWORD}"

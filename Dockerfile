@@ -5,7 +5,7 @@ WORKDIR /app
 #Copy the Maven project definition files
 COPY pom.xml ./
 # Download the dependencies needed for the build (cache them in a separate layer)
-RUN mvn dependency: go-offline
+RUN mvn dependency:go-offline
 #Copy the application source code
 COPY src ./src
 #Build the WAR file

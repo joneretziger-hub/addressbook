@@ -11,6 +11,8 @@ if [ -d "addressbook" ]
 then
   echo "repo is cloned and exists"\
   cd /home/ec2-user/addressbook
+  git fetch origin
+  git checkout docker-1
   git pull origin docker-1
 else
   git clone https://github.com/joneretziger-hub/addressbook.git

@@ -9,7 +9,6 @@ RUN mvn dependency: go-offline
 #Copy the application source code
 COPY src ./src
 #Build the WAR file
-I
 RUN mvn package
 #Stage 2: Production stage
 FROM tomcat:8.5.78-jdk11-openjdk-slim
